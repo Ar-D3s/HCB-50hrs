@@ -1,6 +1,0 @@
-Player Animations Guide
-
-1-2-1-3 Forward
-4-5-4-6 Backward
-7-8-7-9 Left
-10-11-10-12 Right
