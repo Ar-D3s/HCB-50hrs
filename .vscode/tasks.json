@@ -1,7 +1,7 @@
 {
     "tasks": [
         {
-            "type": "cppbuild",
+            "type": "shell",
             "label": "C/C++: g++.exe build active file",
             "command": "C:/mingw32/bin/g++.exe",
             "args": [
@@ -10,7 +10,8 @@
                 "-DNDEBUG",
                 "-DSFML_STATIC",
                 "-IC:/SFML/include",
-                "${file}",
+                "-I${workspaceFolder}/inc",
+                "${workspaceFolder}/src/*.cpp",
                 "-LC:/SFML/lib",
                 "-lsfml-graphics-s",
                 "-lsfml-window-s",
@@ -25,10 +26,11 @@
                 "-lwinpthread",
                 // "-mwindows",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}/main.exe"
+                //"${fileDirname}/${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
