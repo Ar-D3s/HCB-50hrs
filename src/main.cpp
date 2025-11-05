@@ -8,8 +8,14 @@ int main() {
     unsigned int windowHeight = 600.f;
     unsigned int windowWidth = 800.f;
 
+    float playerTileSize = 16.f;
+    int frameSpeed = 5;
+    int frameCount = 0;
+    int animationFrameCount = 1;
+
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");
+    window.setFramerateLimit(60);
     sf::View view;
     view.setCenter({0.f, 0.f});
     view.setSize({static_cast<float>(windowWidth), static_cast<float>(windowHeight)});
@@ -42,6 +48,14 @@ int main() {
 
         window.clear({34, 73, 93});
         window.setView(view);
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) player.move({0.f, -5.f});
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) player.move({0.f, 5.f});
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) player.move({-5.f, 0.f});
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) player.move({5.f, 0.f});
+
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R)) player.setTextureRect(sf::IntRect({16, 0}, {32, 16}));
+
         window.draw(player);
         window.display();
     }

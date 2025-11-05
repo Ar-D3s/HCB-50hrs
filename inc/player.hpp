@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Player : sf::Drawable, sf::Sprite {
+class MyPlayer : sf::Drawable, sf::Sprite {
 
     public:
         sf::Sprite player;
