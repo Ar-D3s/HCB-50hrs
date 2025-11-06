@@ -20,7 +20,7 @@ int main() {
     sf::Clock clock;
 
     int currentIndex = 0;
-    sf::IntRect frameRect({0, 0}, {ANIMATION_FRAME_SIZE, ANIMATION_FRAME_SIZE});
+    sf::IntRect frameRect({0, 0}, {FRAME_SIZE, FRAME_SIZE});
     player.setTextureRect(frameRect);
 
     // Renders window and sets view to size of window
