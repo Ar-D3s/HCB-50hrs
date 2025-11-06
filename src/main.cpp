@@ -8,22 +8,19 @@ int main() {
     unsigned int windowHeight = 600;
     unsigned int windowWidth = 800;
 
+    // Frame size for all tiles
+    const int FRAME_SIZE = 16;
+
     // Creates player and its texture
     sf::Texture playerSheet("textures/Player.png");
     sf::Sprite player(playerSheet);
     player.setScale({4.f, 4.f});
 
-    // Player Animation Variables
-    int frameHeight = 16;
-    int frameWidth = 16;
-
-    float frameDuration = 0.15f;
+    // Clock used for animation speeds and durations
     sf::Clock clock;
 
-    std::vector<int> walkForwards = {0, 1, 0, 2};
-    std::vector<int> walkBackwards = {3, 4, 3, 5};
     int currentIndex = 0;
-    sf::IntRect frameRect({0, 0}, {frameWidth, frameHeight});
+    sf::IntRect frameRect({0, 0}, {ANIMATION_FRAME_SIZE, ANIMATION_FRAME_SIZE});
     player.setTextureRect(frameRect);
 
     // Renders window and sets view to size of window
