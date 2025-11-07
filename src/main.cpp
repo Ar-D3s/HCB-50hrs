@@ -4,6 +4,11 @@
 
 int main() {
 
+    // Clock used for animation speeds and durations
+    sf::Clock gameClock;
+    sf::Time deltaTime;
+    float dt;
+
     // Initial Window Dimensions
     unsigned int windowHeight = 600;
     unsigned int windowWidth = 800;
@@ -13,11 +18,8 @@ int main() {
 
     // Creates player and its texture
     sf::Texture playerSheet("textures/Player.png");
-    sf::Sprite player(playerSheet);
-    player.setScale({4.f, 4.f});
-
-    // Clock used for animation speeds and durations
-    sf::Clock clock;
+    Player player(playerSheet);
+    player.setScale({4.f, 4.f});                      
 
     int currentIndex = 0;
     sf::IntRect frameRect({0, 0}, {FRAME_SIZE, FRAME_SIZE});
@@ -29,7 +31,7 @@ int main() {
     sf::View view;
     view.setCenter({0.f, 0.f});
     view.setSize({static_cast<float>(windowWidth), static_cast<float>(windowHeight)});
- 
+
     // Game loop
     while (window.isOpen()) {
 
@@ -50,30 +52,17 @@ int main() {
 
         }
 
+        // Clears everything and sets the new view before drawing to the screen
         window.clear({34, 73, 93});
         window.setView(view);
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) player.move({0.f, -3.f});
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) player.move({3.f, 0.f});
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) player.move({-3.f, 0.f});
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-    
-            player.move({0.f, 3.f});
-            if (clock.getElapsedTime().asSeconds() > frameDuration) {
+        // Creates delta time to update all objects
+        deltaTime = gameClock.restart(); 
+        dt = deltaTime.asSeconds();    
 
-                currentIndex = (currentIndex + 1) % walkForwards.size();
-                int currentFrame = walkForwards[currentIndex];
-                frameRect.position.x = currentFrame * frameWidth;
-                frameRect.position.y = 0;
-                frameRect.size.y = frameHeight;
-                frameRect.size.x = frameWidth;
-                player.setTextureRect(frameRect);
-                clock.restart();
+        player.update(dt);
 
-        }
-
-        }   
-
+        // Draws everything to the screen & displays it
         window.draw(player);
         window.display();
     }

@@ -10,11 +10,13 @@ class Player : public sf::Sprite {
         sf::Vector2f playerPos;
         sf::Vector2f speed;
 
-        sf::Time deltaTime;
-        float frameDuration;
+        sf::Texture playerSheet;
+
+        sf::Time frameDuration = sf::seconds(0.2f);
         int currentFrame;
         int currentIndex;
         const int FRAME_SIZE = 16;
+        sf::Time frameTimer;
         sf::IntRect frameRect;
 
         std::vector<int> walkForwardsFrames = {0, 1, 0, 2};
@@ -22,11 +24,11 @@ class Player : public sf::Sprite {
         std::vector<int> walkLeftFrames = {6, 7, 6, 8,};
         std::vector<int> walkRightFrames = {9, 10, 9, 11};
 
-        Player(const std::string &texturePath);
+        explicit Player(const std::string &texturePath);
 
         void renderFrames(std::vector<int> framesList);
 
-        void update();
+        void update(float dt);
 
 };
 
