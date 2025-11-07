@@ -35,6 +35,10 @@ int main() {
     // Game loop
     while (window.isOpen()) {
 
+        // Creates delta time to update all objects
+        deltaTime = gameClock.restart(); 
+        dt = deltaTime.asSeconds();  
+
         // Resets the view to the size of the window so stuff doesn't stretch when resizing
         while (const std::optional event = window.pollEvent()) {
 
@@ -54,11 +58,7 @@ int main() {
 
         // Clears everything and sets the new view before drawing to the screen
         window.clear({34, 73, 93});
-        window.setView(view);
-
-        // Creates delta time to update all objects
-        deltaTime = gameClock.restart(); 
-        dt = deltaTime.asSeconds();    
+        window.setView(view);  
 
         player.update(dt);
 

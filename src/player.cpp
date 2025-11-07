@@ -15,7 +15,7 @@ Player::Player(const sf::Texture &texture) : sf::Sprite(texture) {
 }
 
 void Player::renderFrames(std::vector<int> framesList) {
-    if(distance != 0) {
+    if(magnitude != 0) {
         if(frameTimer >= frameDuration) {
 
             //frameTimer -= frameDuration;
