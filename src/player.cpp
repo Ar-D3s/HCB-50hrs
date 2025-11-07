@@ -1,11 +1,17 @@
 #include "player.hpp"
 #include <SFML/Graphics.hpp>
+#include <cmath>
 
-Player::Player(const std::string &texturePath) {
+Player::Player(const sf::Texture &texture) : sf::Sprite(texture) {
 
-    sf::Texture playerSheet(texturePath);
-    setTexture(playerSheet);
+    playerPos = getPosition();
+    wasPlayerPos = playerPos;
 
+    initialFrameRect.position.x = 0;
+    initialFrameRect.position.y = 0;
+    initialFrameRect.size.x = FRAME_SIZE;
+    initialFrameRect.size.y = FRAME_SIZE;
+    setTextureRect(initialFrameRect);
 }
 
 void Player::renderFrames(std::vector<int> framesList) {
@@ -30,26 +36,31 @@ void Player::update(float dt) {
 
     frameTimer += sf::seconds(dt);
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-        move({0.f, 3.f});
-        renderFrames(walkForwardsFrames);
-    }
-
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-        move({0.f, -3.f});
-        renderFrames(walkBackwardsFrames);
-    }
+    wasPlayerPos = playerPos;
+    playerPos = getPosition();
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-        move({-3.f, 0.f});
+        move({(-walkingSpeed * dt), 0.f});
         renderFrames(walkLeftFrames);
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-        move({3.f, 0.f});
+        move({(walkingSpeed * dt), 0.f});
         renderFrames(walkRightFrames);
     }
 
-    playerPos = getPosition();
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
+        move({0.f, (walkingSpeed * dt)});
+        renderFrames(walkForwardsFrames);
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
+        move({0.f, (-walkingSpeed * dt)});
+        renderFrames(walkBackwardsFrames);
+    }
+
+    
+
+    distance = sqrt((wasPlayerPos.y - playerPos.y), + (wasPlayerPos.x - playerPos.x)^2)
     
 }

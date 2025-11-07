@@ -8,7 +8,11 @@ class Player : public sf::Sprite {
     public:
 
         sf::Vector2f playerPos;
-        sf::Vector2f speed;
+        sf::Vector2f wasPlayerPos;
+        float walkingSpeed = 120.f;
+
+        float velocity;
+        float distance;
 
         sf::Texture playerSheet;
 
@@ -18,13 +22,14 @@ class Player : public sf::Sprite {
         const int FRAME_SIZE = 16;
         sf::Time frameTimer;
         sf::IntRect frameRect;
+        sf::IntRect initialFrameRect;
 
         std::vector<int> walkForwardsFrames = {0, 1, 0, 2};
         std::vector<int> walkBackwardsFrames = {3, 4, 3, 5};
         std::vector<int> walkLeftFrames = {6, 7, 6, 8,};
         std::vector<int> walkRightFrames = {9, 10, 9, 11};
 
-        explicit Player(const std::string &texturePath);
+        explicit Player(const sf::Texture &texture);
 
         void renderFrames(std::vector<int> framesList);
 
