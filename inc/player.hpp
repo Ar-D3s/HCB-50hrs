@@ -9,10 +9,11 @@ class Player : public sf::Sprite {
 
         sf::Vector2f playerPos;
         sf::Vector2f wasPlayerPos;
-        float walkingSpeed = 120.f;
-
+        
         float velocity;
-        float distance;
+        float walkingSpeed = 120.f;
+        float magnitude;
+        float normalizedWalkingSpeed;
 
         sf::Texture playerSheet;
 

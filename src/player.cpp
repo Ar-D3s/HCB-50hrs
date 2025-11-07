@@ -15,21 +15,24 @@ Player::Player(const sf::Texture &texture) : sf::Sprite(texture) {
 }
 
 void Player::renderFrames(std::vector<int> framesList) {
+    if(distance != 0) {
+        if(frameTimer >= frameDuration) {
 
-    if(frameTimer >= frameDuration) {
+            //frameTimer -= frameDuration;
+            frameTimer = sf::seconds(0.f);
 
-        frameTimer -= frameDuration;
+            currentIndex = (currentIndex + 1) % framesList.size();
+            int currentFrame = framesList[currentIndex];
+            frameRect.position.x = currentFrame * FRAME_SIZE;
+            frameRect.position.y = 0;
+            frameRect.size.y = FRAME_SIZE;
+            frameRect.size.x = FRAME_SIZE;
 
-        currentIndex = (currentIndex + 1) % framesList.size();
-        int currentFrame = framesList[currentIndex];
-        frameRect.position.x = currentFrame * FRAME_SIZE;
-        frameRect.position.y = 0;
-        frameRect.size.y = FRAME_SIZE;
-        frameRect.size.x = FRAME_SIZE;
+            setTextureRect(frameRect);
+        }
+    } 
 
-        setTextureRect(frameRect);
 
-    }
 }
 
 void Player::update(float dt) {
@@ -59,8 +62,7 @@ void Player::update(float dt) {
         renderFrames(walkBackwardsFrames);
     }
 
-    
-
-    distance = sqrt((wasPlayerPos.y - playerPos.y), + (wasPlayerPos.x - playerPos.x)^2)
+    magnitude = sqrt(pow((wasPlayerPos.y - playerPos.y), 2.f) + pow((wasPlayerPos.x - playerPos.x), 2.f));
+    velocity = magnitude / dt;
     
 }
