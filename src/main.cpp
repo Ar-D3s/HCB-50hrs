@@ -64,7 +64,7 @@ int main() {
 
         // Draws everything to the screen & displays it
         window.draw(player);
-        std::cout << player.velocity << std::endl;
+        std::cout << player.magnitude << std::endl;
         window.display();
     }
 

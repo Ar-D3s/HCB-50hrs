@@ -11,7 +11,7 @@ class Player : public sf::Sprite {
         sf::Vector2f wasPlayerPos;
         
         float velocity;
-        float walkingSpeed = 110.f;
+        float walkingSpeed = 120.f;
         float magnitude;
         float normalizedWalkingSpeed;
         sf::Vector2f direction;

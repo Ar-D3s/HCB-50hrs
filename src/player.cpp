@@ -22,7 +22,7 @@ void Player::renderFrames(std::vector<int> framesList) {
             frameTimer = sf::seconds(0.f);
 
             currentIndex = (currentIndex + 1) % framesList.size();
-            int currentFrame = framesList[currentIndex];
+            currentFrame = framesList[currentIndex];
             frameRect.position.x = currentFrame * FRAME_SIZE;
             frameRect.position.y = 0;
             frameRect.size.y = FRAME_SIZE;
@@ -41,6 +41,9 @@ void Player::update(float dt) {
 
     wasPlayerPos = playerPos;
     playerPos = getPosition();
+
+    magnitude = sqrt(pow((wasPlayerPos.y - playerPos.y), 2.f) + pow((wasPlayerPos.x - playerPos.x), 2.f));
+    velocity = magnitude / dt;
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
         move({(-walkingSpeed * dt), 0.f});
@@ -61,8 +64,5 @@ void Player::update(float dt) {
         move({0.f, (-walkingSpeed * dt)});
         renderFrames(walkBackwardsFrames);
     }
-
-    magnitude = sqrt(pow((wasPlayerPos.y - playerPos.y), 2.f) + pow((wasPlayerPos.x - playerPos.x), 2.f));
-    velocity = magnitude / dt;
     
 }
