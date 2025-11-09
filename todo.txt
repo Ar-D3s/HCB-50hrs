@@ -1,6 +1,8 @@
 Player Animation 
-
 1-2-1-3 Walk forward
 4-5-4-6 Walk backwards
 7-8-7-9 Walk left
 10-11-10-12 Walk right
+
+Create vertex array for tilemap
+

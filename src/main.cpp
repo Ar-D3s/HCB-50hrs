@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "player.hpp"
+#include "map.hpp"
 
 int main() {
 
