@@ -27,7 +27,7 @@ int main() {
 
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");
-    window.setFramerateLimit(60);
+    //window.setFramerateLimit(60);
     sf::View view;
     view.setCenter({0.f, 0.f});
     view.setSize({static_cast<float>(windowWidth), static_cast<float>(windowHeight)});
@@ -36,8 +36,7 @@ int main() {
     while (window.isOpen()) {
 
         // Creates delta time to update all objects
-        deltaTime = gameClock.restart(); 
-        dt = deltaTime.asSeconds();  
+        dt = gameClock.restart().asSeconds();  
 
         // Resets the view to the size of the window so stuff doesn't stretch when resizing
         while (const std::optional event = window.pollEvent()) {
@@ -64,7 +63,6 @@ int main() {
 
         // Draws everything to the screen & displays it
         window.draw(player);
-        std::cout << player.magnitude << std::endl;
         window.display();
     }
 

@@ -2,10 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
+// Constructor sets the initial player frame to be standing still
 Player::Player(const sf::Texture &texture) : sf::Sprite(texture) {
-
-    playerPos = getPosition();
-    wasPlayerPos = playerPos;
 
     initialFrameRect.position.x = 0;
     initialFrameRect.position.y = 0;
@@ -14,11 +12,11 @@ Player::Player(const sf::Texture &texture) : sf::Sprite(texture) {
     setTextureRect(initialFrameRect);
 }
 
+// This method takes in the frame list and renders the animation to the screen
 void Player::renderFrames(std::vector<int> framesList) {
-    if(magnitude != 0) {
+    if(length != 0) {
         if(frameTimer >= frameDuration) {
 
-            //frameTimer -= frameDuration;
             frameTimer = sf::seconds(0.f);
 
             currentIndex = (currentIndex + 1) % framesList.size();
@@ -35,34 +33,38 @@ void Player::renderFrames(std::vector<int> framesList) {
 
 }
 
+// This is called in main.cpp to update the player
 void Player::update(float dt) {
 
     frameTimer += sf::seconds(dt);
+    direction = {0.f, 0.f};
 
-    wasPlayerPos = playerPos;
     playerPos = getPosition();
 
-    magnitude = sqrt(pow((wasPlayerPos.y - playerPos.y), 2.f) + pow((wasPlayerPos.x - playerPos.x), 2.f));
-    velocity = magnitude / dt;
-
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) {
-        move({(-walkingSpeed * dt), 0.f});
+        direction.x -= 1.f;
         renderFrames(walkLeftFrames);
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-        move({(walkingSpeed * dt), 0.f});
+        direction.x += 1.f;
         renderFrames(walkRightFrames);
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-        move({0.f, (walkingSpeed * dt)});
+        direction.y += 1.f;
         renderFrames(walkForwardsFrames);
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) {
-        move({0.f, (-walkingSpeed * dt)});
+        direction.y -= 1.f;
         renderFrames(walkBackwardsFrames);
     }
+
+    // Normalization
+    length = sqrt(pow(direction.x, 2.f) + pow(direction.y, 2.f));
+    if (length != 0) direction /= length;
+
+    move(direction * dt * walkingSpeed);
     
 }
