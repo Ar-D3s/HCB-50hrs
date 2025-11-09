@@ -1,4 +1,4 @@
-#include "map.hpp"
+#include "tileMap.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>

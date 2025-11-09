@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "player.hpp"
-#include "map.hpp"
+#include "tileMap.hpp"
 
 int main() {
 
@@ -27,18 +27,18 @@ int main() {
     // Basic tilemap
     std::vector<int> tileMap = 
     {0,0,0,0,0,0,0,0,0,0,
-     0,1,1,0,0,0,0,0,2,0,
-     0,1,1,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,2,0,
-     0,0,0,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,2,0,
-     0,0,0,0,0,0,0,0,0,0,
+     0,1,1,0,0,0,0,2,2,2,
+     0,1,1,0,0,0,2,2,2,2,
+     0,0,0,0,0,0,2,2,2,2,
+     0,0,0,0,0,0,0,2,2,0,
+     0,0,0,0,0,0,2,2,2,0,
+     0,0,0,0,0,0,2,2,2,0,
      0,1,1,0,0,0,0,0,2,0,
      0,1,1,0,0,0,0,0,0,0,
      0,0,0,0,0,0,0,0,0,0,};
 
     // Creates the map
-    sf::Texture mapTexture("textures/tileTextures.png");
+    sf::Texture mapTexture("textures/tileArray.png");
     Tilemap map(10, 10, mapTexture, tileMap);
 
     // Renders window and sets view to size of window
