@@ -21,10 +21,21 @@ int main() {
     sf::Texture playerSheet("textures/Player.png");
     Player player(playerSheet);
     player.setScale({4.f, 4.f});                      
-
-    int currentIndex = 0;
     sf::IntRect frameRect({0, 0}, {FRAME_SIZE, FRAME_SIZE});
     player.setTextureRect(frameRect);
+
+    // Basic tilemap
+    std::vector<int> tileMap = 
+    {0,0,0,0,0,0,0,0,0,0,
+     0,1,1,0,0,0,0,0,2,0,
+     0,1,1,0,0,0,0,0,0,0,
+     0,0,0,0,0,0,0,0,2,0,
+     0,0,0,0,0,0,0,0,0,0,
+     0,0,0,0,0,0,0,0,2,0,
+     0,0,0,0,0,0,0,0,0,0,
+     0,1,1,0,0,0,0,0,2,0,
+     0,1,1,0,0,0,0,0,0,0,
+     0,0,0,0,0,0,0,0,0,0,};
 
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");

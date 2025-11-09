@@ -11,14 +11,12 @@ class Tilemap : public sf::Drawable, public sf::VertexArray {
         int tilesWide;
         int tilesHigh;
 
-        sf::Texture &textureMap;
-
         const int TILESIZE = 16;
 
-        std::vector<int> &tiles;
+        sf::Texture& textureMap;
+        std::vector<int>& tiles;
 
-        Tilemap(int mapWidth, int mapHeight);
-        
+        Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<int>& tileMap);
         
 };
 

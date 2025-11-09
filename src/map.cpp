@@ -9,27 +9,54 @@ loaded in from a binary file, or it can be randomly generated. For these approac
 be determined by square rooting the number of tiles in the file as the map will always be a square.
 */ 
 
-Tilemap::Tilemap(int mapWidth, int mapHeight) : tilesWide(mapWidth), tilesHigh(mapHeight) {
+Tilemap::Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<int>& tileMap) 
+    : sf::VertexArray(), tilesWide(mapWidth), tilesHigh(mapHeight), textureMap(texture), tiles(tileMap) {
 
     setPrimitiveType(sf::PrimitiveType::Triangles);
     resize(6 * tilesWide * tilesHigh);
 
+    for (int tileH = 0; tileH < tilesHigh; tileH ++) {
+
+        int counter = tileH * tilesWide * 6;
+
+        for (int tileW = 0; tileW < tilesWide; tileW ++) {
+
+            int realCounter = counter + (tileW * 6);
+
+            float indexX = tileW * TILESIZE;
+            float indexY = tileH * TILESIZE;
+
+            sf::Vector2f v0 = {indexX, indexY};
+            sf::Vector2f v1 = {indexX + TILESIZE, indexY};
+            sf::Vector2f v2 = {indexX, indexY + TILESIZE};
+            sf::Vector2f v3 = {indexX + TILESIZE, indexY + TILESIZE};
+
+            (*this)[realCounter].position = v0;
+            (*this)[realCounter + 1].position = v1;
+            (*this)[realCounter + 2].position = v2;
+            (*this)[realCounter + 3].position = v3;
+            (*this)[realCounter + 4].position = v2;
+            (*this)[realCounter + 5].position = v1;   
+
+            for (int index : tileMap) {
+
+                (*this)[realCounter].texCoords = sf::Vector2f(0.f, 0.f);            
+                (*this)[realCounter + 1].texCoords = sf::Vector2f(0.f, 32.f);
+                (*this)[realCounter + 2].texCoords = sf::Vector2f(32.f, 0.f);
+                (*this)[realCounter + 3].texCoords = sf::Vector2f(32.f, 32.f);
+                (*this)[realCounter + 4].texCoords = sf::Vector2f(32.f, 0.f);
+                (*this)[realCounter + 5].texCoords = sf::Vector2f(0.f, 32.f); 
+
+            }
+
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
 
 /*
 
-For now, being hardcoded:
-Create vertex array in constructor
-Fill it with textures using hardcoded tilemap,
-both passed into the textureise method
+go through the tilemap, accessing its elements
+multiply each element with the x coordinate of .texCoords
+
 
 */
