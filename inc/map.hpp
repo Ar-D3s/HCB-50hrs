@@ -4,14 +4,14 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-class Tilemap : public sf::Drawable, public sf::VertexArray {
+class Tilemap : public sf::VertexArray {
 
     public:
 
         int tilesWide;
         int tilesHigh;
 
-        const int TILESIZE = 16;
+        const int TILESIZE = 64;
 
         sf::Texture& textureMap;
         std::vector<int>& tiles;

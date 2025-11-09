@@ -37,11 +37,15 @@ int main() {
      0,1,1,0,0,0,0,0,0,0,
      0,0,0,0,0,0,0,0,0,0,};
 
+    // Creates the map
+    sf::Texture mapTexture("textures/tileTextures.png");
+    Tilemap map(10, 10, mapTexture, tileMap);
+
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");
     //window.setFramerateLimit(60);
     sf::View view;
-    view.setCenter({0.f, 0.f});
+    view.setCenter({320.f, 320.f});
     view.setSize({static_cast<float>(windowWidth), static_cast<float>(windowHeight)});
 
     // Game loop
@@ -74,6 +78,7 @@ int main() {
         player.update(dt);
 
         // Draws everything to the screen & displays it
+        window.draw(map, &mapTexture);
         window.draw(player);
         window.display();
     }

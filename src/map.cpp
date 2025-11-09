@@ -1,6 +1,7 @@
 #include "map.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 
 /*
 For now, this and the tilemap will be hardcoded because I want to focus on other parts of world creation,
@@ -36,23 +37,25 @@ Tilemap::Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<
             (*this)[realCounter + 2].position = v2;
             (*this)[realCounter + 3].position = v3;
             (*this)[realCounter + 4].position = v2;
-            (*this)[realCounter + 5].position = v1;   
-
-            for (int index : tileMap) {
-
-                (*this)[realCounter].texCoords = sf::Vector2f(0.f, 0.f);            
-                (*this)[realCounter + 1].texCoords = sf::Vector2f(0.f, 32.f);
-                (*this)[realCounter + 2].texCoords = sf::Vector2f(32.f, 0.f);
-                (*this)[realCounter + 3].texCoords = sf::Vector2f(32.f, 32.f);
-                (*this)[realCounter + 4].texCoords = sf::Vector2f(32.f, 0.f);
-                (*this)[realCounter + 5].texCoords = sf::Vector2f(0.f, 32.f); 
-
-            }
-
+            (*this)[realCounter + 5].position = v1;  
         }
+    
     }
-}
 
+    int vertexCount = 0;
+    for (int i : tileMap) {
+    std::cout << i << std::endl;
+        (*this)[vertexCount].texCoords = sf::Vector2f(16.f * i, 0.f);            
+        (*this)[vertexCount + 1].texCoords = sf::Vector2f(16.f * i + 16, 0.f);
+        (*this)[vertexCount + 2].texCoords = sf::Vector2f(16.f * i, 16.f);
+        (*this)[vertexCount + 3].texCoords = sf::Vector2f(16.f * i + 16, 16.f);
+        (*this)[vertexCount + 4].texCoords = sf::Vector2f(16.f * i, 16.f);
+        (*this)[vertexCount + 5].texCoords = sf::Vector2f(16.f * i + 16, 0.f);
+        vertexCount += 6;
+    }
+
+}
+                          
 /*
 
 go through the tilemap, accessing its elements
