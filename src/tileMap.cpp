@@ -10,10 +10,16 @@ loaded in from a binary file, or it can be randomly generated. For these approac
 be determined by square rooting the number of tiles in the file as the map will always be a square.
 */ 
 
-Tilemap::Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<int>& tileMap) 
-    : sf::VertexArray(), tilesWide(mapWidth), tilesHigh(mapHeight), textureMap(texture), tiles(tileMap) {
+Tilemap::Tilemap(sf::Texture& texture, std::vector<int>& tilemap) 
+    : sf::VertexArray(), textureMap(texture), tiles(tilemap)
+{
 
     setPrimitiveType(sf::PrimitiveType::Triangles);
+
+}
+
+void Tilemap::load(int mapWidth, int mapHeight) {
+
     resize(6 * tilesWide * tilesHigh);
 
     for (int tileH = 0; tileH < tilesHigh; tileH ++) {
@@ -43,7 +49,7 @@ Tilemap::Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<
     }
 
     int vertexCount = 0;
-    for (int i : tileMap) {
+    for (int i : tiles) {
     std::cout << i << std::endl;
         (*this)[vertexCount].texCoords = sf::Vector2f(16.f * i, 0.f);            
         (*this)[vertexCount + 1].texCoords = sf::Vector2f(16.f * i + 16, 0.f);
@@ -55,11 +61,3 @@ Tilemap::Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<
     }
 
 }
-                          
-/*
-
-go through the tilemap, accessing its elements
-multiply each element with the x coordinate of .texCoords
-
-
-*/

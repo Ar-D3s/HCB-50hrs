@@ -16,9 +16,9 @@ class Tilemap : public sf::VertexArray {
         sf::Texture& textureMap;
         std::vector<int>& tiles;
 
-        Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<int>& tileMap);
+        Tilemap(sf::Texture& texture, std::vector<int>& tilemap);
 
-        void load();
+        void load(int mapWidth, int mapHeight);
         void generateTileMap();
         
 };

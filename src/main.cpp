@@ -35,11 +35,12 @@ int main() {
      0,0,0,0,0,0,2,2,2,0,
      0,1,1,0,0,0,0,0,2,0,
      0,1,1,0,0,0,0,0,0,0,
-     0,0,0,0,0,0,0,0,0,0,};
+     0,0,0,0,0,0,0,0,0,0,
+     0,0,0,0,0,0,0,0,0,0};
 
     // Creates the map
     sf::Texture mapTexture("textures/tileArray.png");
-    Tilemap map(10, 10, mapTexture, tileMap);
+    Tilemap map(mapTexture, tileMap);
 
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");
@@ -85,3 +86,18 @@ int main() {
 
     return 0;
 }
+
+/*
+
+In order to pass the tilemap by reference into the constructor, the tilemap needs to exist before
+passing it in.
+
+For loading in - have a file to load in the map and metadata, make a vertex array out of it, pass it into 
+main and then from there pass it into the tileMap constructor
+
+For randomly generating - have a file to randomly generate the correct size map, and use perlin noise
+to smooth the terrain. Then, load this into main and hence pass it into the tileMap constructor
+
+tileMap.cpp/.hpp have no part in making the array/list, they just take it and render it to the screen
+
+*/
