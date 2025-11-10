@@ -10,8 +10,8 @@ loaded in from a binary file, or it can be randomly generated. For these approac
 be determined by square rooting the number of tiles in the file as the map will always be a square.
 */ 
 
-Tilemap::Tilemap(sf::Texture& texture, std::vector<int>& tilemap, int mapWidth, int mapHeight) 
-    : sf::VertexArray(), textureMap(texture), tiles(tilemap), tilesWide(mapWidth), tilesHigh(mapHeight)
+Tilemap::Tilemap(std::vector<int>& tilemap, int mapWidth, int mapHeight) 
+    : sf::VertexArray(), tiles(tilemap), tilesWide(mapWidth), tilesHigh(mapHeight)
 {
 
     setPrimitiveType(sf::PrimitiveType::Triangles);

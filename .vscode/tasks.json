@@ -20,6 +20,7 @@
                 "-lfreetype",
                 "-lwinmm",
                 "-lgdi32",
+                "-lws2_32",
                 "-static-libgcc",
                 "-static-libstdc++",
                 "-static",

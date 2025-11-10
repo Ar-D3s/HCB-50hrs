@@ -16,7 +16,6 @@ class Player : public sf::Sprite {
         sf::Vector2f direction{0.f, 0.f};
 
         // Attributes for animation
-        sf::Texture playerSheet;
         sf::Time frameDuration = sf::seconds(0.2f);
         int currentFrame;
         int currentIndex;

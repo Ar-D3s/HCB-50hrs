@@ -18,7 +18,12 @@ int main() {
     const int FRAME_SIZE = 16;
 
     // Creates player and its texture
-    sf::Texture playerSheet("textures/Player.png");
+    sf::Texture playerSheet;
+    if (!playerSheet.loadFromFile("C:/Users/Archie/Desktop/HCB-50hrs/HCB-50hrs/textures/player.png")) {
+        std::cerr << "Failed to load player texture!" << std::endl;
+        return -1;
+    }
+
     Player player(playerSheet);
     player.setScale({4.f, 4.f});                      
     sf::IntRect frameRect({0, 0}, {FRAME_SIZE, FRAME_SIZE});
@@ -39,8 +44,13 @@ int main() {
      0,0,0,0,0,0,0,0,0,0};
 
     // Creates the map
-    sf::Texture mapTexture("textures/tileArray.png");
-    Tilemap map(mapTexture, tileMap, 10, 10);
+    sf::Texture mapTexture;
+    if (!mapTexture.loadFromFile("C:/Users/Archie/Desktop/HCB-50hrs/HCB-50hrs/textures/tileArray.png")) {
+        std::cerr << "Failed to load map texture!" << std::endl;
+        return -1; // Stop the program if it can't load
+    }
+
+    Tilemap map(tileMap, 10, 10);
 
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");

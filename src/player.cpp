@@ -3,7 +3,7 @@
 #include <cmath>
 
 // Constructor sets the initial player frame to be standing still
-Player::Player(const sf::Texture &texture) : sf::Sprite(texture) {
+Player::Player(const sf::Texture& texture) : sf::Sprite(texture) {
 
     initialFrameRect.position.x = 0;
     initialFrameRect.position.y = 0;

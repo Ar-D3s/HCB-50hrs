@@ -1,5 +1,5 @@
-#ifndef RENDERMAP_HPP
-#define RENDERMAP_HPP
+#ifndef TILEMAP_HPP
+#define TILEMAP_HPP
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -13,10 +13,9 @@ class Tilemap : public sf::VertexArray {
 
         const int TILESIZE = 64;
 
-        sf::Texture& textureMap;
         std::vector<int>& tiles;
 
-        Tilemap(sf::Texture& texture, std::vector<int>& tilemap, int mapWidth, int mapHeight);
+        Tilemap(std::vector<int>& tilemap, int mapWidth, int mapHeight);
 
 };
 
