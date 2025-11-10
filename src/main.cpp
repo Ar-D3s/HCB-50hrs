@@ -31,8 +31,8 @@ int main() {
      0,1,1,0,0,0,2,2,2,2,
      0,0,0,0,0,0,2,2,2,2,
      0,0,0,0,0,0,0,2,2,0,
-     0,0,0,0,0,0,2,2,2,0,
-     0,0,0,0,0,0,2,2,2,0,
+     0,1,0,0,0,0,2,2,2,0,
+     0,1,0,0,0,0,2,2,2,0,
      0,1,1,0,0,0,0,0,2,0,
      0,1,1,0,0,0,0,0,0,0,
      0,0,0,0,0,0,0,0,0,0,
@@ -40,7 +40,7 @@ int main() {
 
     // Creates the map
     sf::Texture mapTexture("textures/tileArray.png");
-    Tilemap map(mapTexture, tileMap);
+    Tilemap map(mapTexture, tileMap, 10, 10);
 
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");

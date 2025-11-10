@@ -10,15 +10,11 @@ loaded in from a binary file, or it can be randomly generated. For these approac
 be determined by square rooting the number of tiles in the file as the map will always be a square.
 */ 
 
-Tilemap::Tilemap(sf::Texture& texture, std::vector<int>& tilemap) 
-    : sf::VertexArray(), textureMap(texture), tiles(tilemap)
+Tilemap::Tilemap(sf::Texture& texture, std::vector<int>& tilemap, int mapWidth, int mapHeight) 
+    : sf::VertexArray(), textureMap(texture), tiles(tilemap), tilesWide(mapWidth), tilesHigh(mapHeight)
 {
 
     setPrimitiveType(sf::PrimitiveType::Triangles);
-
-}
-
-void Tilemap::load(int mapWidth, int mapHeight) {
 
     resize(6 * tilesWide * tilesHigh);
 
@@ -50,7 +46,6 @@ void Tilemap::load(int mapWidth, int mapHeight) {
 
     int vertexCount = 0;
     for (int i : tiles) {
-    std::cout << i << std::endl;
         (*this)[vertexCount].texCoords = sf::Vector2f(16.f * i, 0.f);            
         (*this)[vertexCount + 1].texCoords = sf::Vector2f(16.f * i + 16, 0.f);
         (*this)[vertexCount + 2].texCoords = sf::Vector2f(16.f * i, 16.f);
