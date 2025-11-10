@@ -17,18 +17,10 @@ class Tilemap : public sf::VertexArray {
         std::vector<int>& tiles;
 
         Tilemap(int mapWidth, int mapHeight, sf::Texture& texture, std::vector<int>& tileMap);
+
+        void load();
+        void generateTileMap();
         
 };
 
 #endif
-
-/*
-
-Things it needs to do:
-
-- Take in an array of any size
-- Draws the array to the screen
-- Only draws things in the view
-
-
-*/
