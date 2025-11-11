@@ -19,9 +19,8 @@ int main() {
 
     // Creates player and its texture
     sf::Texture playerSheet;
-    if (!playerSheet.loadFromFile("C:/Users/Archie/Desktop/HCB-50hrs/HCB-50hrs/textures/player.png")) {
+    if (!playerSheet.loadFromFile("textures/Player.png")) {
         std::cerr << "Failed to load player texture!" << std::endl;
-        return -1;
     }
 
     Player player(playerSheet);
@@ -44,11 +43,14 @@ int main() {
      0,0,0,0,0,0,0,0,0,0};
 
     // Creates the map
-    sf::Texture mapTexture;
-    if (!mapTexture.loadFromFile("C:/Users/Archie/Desktop/HCB-50hrs/HCB-50hrs/textures/tileArray.png")) {
-        std::cerr << "Failed to load map texture!" << std::endl;
-        return -1; // Stop the program if it can't load
+
+    sf::Texture mapTexture("textures/tileArray.png");
+    /*try {
+        mapTexture.loadFromFile("textures/tileArray.png");
     }
+    catch (int errorCode) {
+        std::cout << "Tile array texture Error occurred: " << errorCode;
+    }*/
 
     Tilemap map(tileMap, 10, 10);
 

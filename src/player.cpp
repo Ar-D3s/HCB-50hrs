@@ -29,8 +29,6 @@ void Player::renderFrames(std::vector<int> framesList) {
             setTextureRect(frameRect);
         }
     } 
-
-
 }
 
 // This is called in main.cpp to update the player
