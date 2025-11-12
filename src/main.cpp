@@ -18,10 +18,7 @@ int main() {
     const int FRAME_SIZE = 16;
 
     // Creates player and its texture
-    sf::Texture playerSheet;
-    if (!playerSheet.loadFromFile("textures/Player.png")) {
-        std::cerr << "Failed to load player texture!" << std::endl;
-    }
+    sf::Texture playerSheet("textures/Player.png");
 
     Player player(playerSheet);
     player.setScale({4.f, 4.f});                      
@@ -43,16 +40,10 @@ int main() {
      0,0,0,0,0,0,0,0,0,0};
 
     // Creates the map
-
     sf::Texture mapTexture("textures/tileArray.png");
-    /*try {
-        mapTexture.loadFromFile("textures/tileArray.png");
-    }
-    catch (int errorCode) {
-        std::cout << "Tile array texture Error occurred: " << errorCode;
-    }*/
 
     Tilemap map(tileMap, 10, 10);
+    map.load();
 
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");

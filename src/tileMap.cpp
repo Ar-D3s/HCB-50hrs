@@ -11,10 +11,11 @@ be determined by square rooting the number of tiles in the file as the map will 
 */ 
 
 Tilemap::Tilemap(std::vector<int>& tilemap, int mapWidth, int mapHeight) 
-    : sf::VertexArray(), tiles(tilemap), tilesWide(mapWidth), tilesHigh(mapHeight)
-{
+    : sf::VertexArray(sf::PrimitiveType::Triangles),
+    tilesWide(mapWidth), tilesHigh(mapHeight), tileMap(tilemap)
+{}
 
-    setPrimitiveType(sf::PrimitiveType::Triangles);
+void Tilemap::load() {
 
     resize(6 * tilesWide * tilesHigh);
 
@@ -48,7 +49,7 @@ Tilemap::Tilemap(std::vector<int>& tilemap, int mapWidth, int mapHeight)
             (*this)[xIndex + 4].position = v2;
             (*this)[xIndex + 5].position = v1;  
 
-            int tilePos = tiles[textureIndex];
+            int tilePos = tileMap[textureIndex];
 
             (*this)[xIndex].texCoords = sf::Vector2f(16.f * tilePos, 0.f);            
             (*this)[xIndex + 1].texCoords = sf::Vector2f(16.f * tilePos + 16, 0.f);
@@ -61,4 +62,5 @@ Tilemap::Tilemap(std::vector<int>& tilemap, int mapWidth, int mapHeight)
 
         }
     }
+
 }
