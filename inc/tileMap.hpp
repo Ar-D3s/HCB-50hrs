@@ -10,13 +10,12 @@ class Tilemap : public sf::VertexArray {
 
         int tilesWide;
         int tilesHigh;
-        std::vector<int>& tileMap;
 
         const int TILESIZE = 64;
 
-        Tilemap(std::vector<int>& tilemap, int mapWidth, int mapHeight);
+        Tilemap(int mapWidth, int mapHeight);
 
-        void load();
+        void load(std::vector<int>& tileMap);
 
 };
 

@@ -3,19 +3,10 @@
 #include <vector>
 #include <iostream>
 
-/*
-For now, this and the tilemap will be hardcoded because I want to focus on other parts of world creation,
-such as collisions and interactability. I will come back later and change it so that either a map can be 
-loaded in from a binary file, or it can be randomly generated. For these approaches, the map width/height will
-be determined by square rooting the number of tiles in the file as the map will always be a square.
-*/ 
+Tilemap::Tilemap(int mapWidth, int mapHeight) : sf::VertexArray(sf::PrimitiveType::Triangles),
+    tilesWide(mapWidth), tilesHigh(mapHeight) {}
 
-Tilemap::Tilemap(std::vector<int>& tilemap, int mapWidth, int mapHeight) 
-    : sf::VertexArray(sf::PrimitiveType::Triangles),
-    tilesWide(mapWidth), tilesHigh(mapHeight), tileMap(tilemap)
-{}
-
-void Tilemap::load() {
+void Tilemap::load(std::vector<int>& tileMap) {
 
     resize(6 * tilesWide * tilesHigh);
 

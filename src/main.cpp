@@ -42,8 +42,8 @@ int main() {
     // Creates the map
     sf::Texture mapTexture("textures/tileArray.png");
 
-    Tilemap map(tileMap, 10, 10);
-    map.load();
+    Tilemap map(10, 10);
+    map.load(tileMap);
 
     // Renders window and sets view to size of window
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "My game");
