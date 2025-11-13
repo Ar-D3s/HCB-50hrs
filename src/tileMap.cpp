@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
+#include "tileTypes.hpp"
 
 Tilemap::Tilemap(int mapWidth, int mapHeight) : sf::VertexArray(sf::PrimitiveType::Triangles),
     tilesWide(mapWidth), tilesHigh(mapHeight) {}
@@ -9,21 +10,19 @@ Tilemap::Tilemap(int mapWidth, int mapHeight) : sf::VertexArray(sf::PrimitiveTyp
 void Tilemap::load(std::vector<int>& tileMap) {
 
     resize(6 * tilesWide * tilesHigh);
+    auto tileTypes = getTileTypes();
 
     // Lets the numbers in tiles list be accessed in order
     int textureIndex = 0;
 
-    // Cycles through each column
+    // Cycles through and gives each tile the right position
     for (int tileH = 0; tileH < tilesHigh; tileH ++) {
-
-        // Keeps track of the elements in the vertex array
-        int yIndex = tileH * tilesWide * 6;
-
-        // Cycles through each row
         for (int tileW = 0; tileW < tilesWide; tileW ++) {
 
-            // 
-            int xIndex = yIndex + (tileW * 6);
+            int tileNumber = tileH * tilesWide * 6 + (tileW * 6);
+            int tileNumberTesting = tileMap[tileH * tilesWide + tileW];
+
+            if (tileNumber == tileNumberTesting) std::cout << "True" << "\n";
 
             float xPos = tileW * TILESIZE;
             float yPos = tileH * TILESIZE;
@@ -33,25 +32,24 @@ void Tilemap::load(std::vector<int>& tileMap) {
             sf::Vector2f v2 = {xPos, yPos + TILESIZE};
             sf::Vector2f v3 = {xPos + TILESIZE, yPos + TILESIZE};
 
-            (*this)[xIndex].position = v0;
-            (*this)[xIndex + 1].position = v1;
-            (*this)[xIndex + 2].position = v2;
-            (*this)[xIndex + 3].position = v3;
-            (*this)[xIndex + 4].position = v2;
-            (*this)[xIndex + 5].position = v1;  
+            (*this)[tileNumber].position = v0;
+            (*this)[tileNumber + 1].position = v1;
+            (*this)[tileNumber + 2].position = v2;
+            (*this)[tileNumber + 3].position = v3;
+            (*this)[tileNumber + 4].position = v2;
+            (*this)[tileNumber + 5].position = v1;  
 
             int tilePos = tileMap[textureIndex];
 
-            (*this)[xIndex].texCoords = sf::Vector2f(16.f * tilePos, 0.f);            
-            (*this)[xIndex + 1].texCoords = sf::Vector2f(16.f * tilePos + 16, 0.f);
-            (*this)[xIndex + 2].texCoords = sf::Vector2f(16.f * tilePos, 16.f);
-            (*this)[xIndex + 3].texCoords = sf::Vector2f(16.f * tilePos + 16, 16.f);
-            (*this)[xIndex + 4].texCoords = sf::Vector2f(16.f * tilePos, 16.f);
-            (*this)[xIndex + 5].texCoords = sf::Vector2f(16.f * tilePos + 16, 0.f);
+            (*this)[tileNumber].texCoords = sf::Vector2f(16.f * tilePos, 0.f);            
+            (*this)[tileNumber + 1].texCoords = sf::Vector2f(16.f * tilePos + 16, 0.f);
+            (*this)[tileNumber + 2].texCoords = sf::Vector2f(16.f * tilePos, 16.f);
+            (*this)[tileNumber + 3].texCoords = sf::Vector2f(16.f * tilePos + 16, 16.f);
+            (*this)[tileNumber + 4].texCoords = sf::Vector2f(16.f * tilePos, 16.f);
+            (*this)[tileNumber + 5].texCoords = sf::Vector2f(16.f * tilePos + 16, 0.f);
 
             textureIndex ++;
 
         }
     }
-
 }
