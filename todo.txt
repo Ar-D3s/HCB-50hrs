@@ -7,3 +7,4 @@ Player Animation
 Could:
 - Random terrain generation
 - Collision boxes
+- Make collision detector manager
