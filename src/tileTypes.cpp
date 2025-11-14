@@ -5,8 +5,8 @@
 
 std::vector<tileType> getTileTypes() {
     return {
-        {"Grass", false, sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(16, 16))},
-        {"Flowers", false, sf::IntRect(sf::Vector2i(16, 0), sf::Vector2i(16, 16))},
-        {"Water", true, sf::IntRect(sf::Vector2i(32, 0), sf::Vector2i(16, 16))}
+        {"Grass", false, sf::FloatRect(sf::Vector2f(0, 0), sf::Vector2f(16, 16))},
+        {"Flowers", false, sf::FloatRect(sf::Vector2f(16, 0), sf::Vector2f(16, 16))},
+        {"Water", true, sf::FloatRect(sf::Vector2f(32, 0), sf::Vector2f(16, 16))}
     };
 }

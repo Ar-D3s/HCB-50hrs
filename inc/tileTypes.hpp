@@ -9,7 +9,7 @@ struct tileType {
 
     std::string name;
     bool solid;
-    sf::IntRect textureRect;
+    sf::FloatRect textureRect;
 
 };
 
