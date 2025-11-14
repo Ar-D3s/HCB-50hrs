@@ -4,5 +4,6 @@ Player Animation
 7-8-7-9 Walk left
 10-11-10-12 Walk right
 
-Create vertex array for tilemap
-
+Could:
+- Random terrain generation
+- Collision boxes

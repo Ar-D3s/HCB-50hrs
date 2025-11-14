@@ -8,7 +8,7 @@
 struct tileType {
 
     std::string name;
-    bool solid;
+    bool collidable;
     sf::FloatRect textureRect;
 
 };

@@ -40,8 +40,6 @@ void Tilemap::load(std::vector<int>& tileMap) {
             (*this)[tileNumber + 4].position = vp2;
             (*this)[tileNumber + 5].position = vp1;  
 
-            int tilePos = tileMap[textureIndex];
-
             sf::Vector2f vt0 = {texRect.position.x, texRect.position.y};
             sf::Vector2f vt1 = {texRect.position.x + texRect.size.x, texRect.position.y};
             sf::Vector2f vt2 = {texRect.position.x, texRect.position.y + texRect.size.y};
@@ -53,8 +51,6 @@ void Tilemap::load(std::vector<int>& tileMap) {
             (*this)[tileNumber + 3].texCoords = vt3;
             (*this)[tileNumber + 4].texCoords = vt2;
             (*this)[tileNumber + 5].texCoords = vt1;
-
-            textureIndex ++;
 
         }
     }
