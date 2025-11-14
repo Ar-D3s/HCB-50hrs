@@ -10,6 +10,12 @@ Player::Player(const sf::Texture& texture) : sf::Sprite(texture) {
     initialFrameRect.size.x = FRAME_SIZE;
     initialFrameRect.size.y = FRAME_SIZE;
     setTextureRect(initialFrameRect);
+    setScale({4.f, 4.f}); 
+    /*playerBox.position.x = 16.f;
+    playerBox.position.y = 56.f;
+    playerBox.size.x = 28.f;
+    playerBox.size.y = 8.f;*/
+    // Needs to stay at the feet of player
 }
 
 // This method takes in the frame list and renders the animation to the screen

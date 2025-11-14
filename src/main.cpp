@@ -20,8 +20,7 @@ int main() {
     // Creates player and its texture
     sf::Texture playerSheet("textures/Player.png");
 
-    Player player(playerSheet);
-    player.setScale({4.f, 4.f});                      
+    Player player(playerSheet);                     
     sf::IntRect frameRect({0, 0}, {FRAME_SIZE, FRAME_SIZE});
     player.setTextureRect(frameRect);
 

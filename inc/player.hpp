@@ -27,8 +27,11 @@ class Player : public sf::Sprite {
         // Lists of frame orders for animation
         std::vector<int> walkForwardsFrames = {0, 1, 0, 2};
         std::vector<int> walkBackwardsFrames = {3, 4, 3, 5};
-        std::vector<int> walkLeftFrames = {6, 7, 6, 8,};
+        std::vector<int> walkLeftFrames = {6, 7, 6, 8};
         std::vector<int> walkRightFrames = {9, 10, 9, 11};
+
+        // Player collision box
+        sf::FloatRect playerBox;
 
         // Constructor
         explicit Player(const sf::Texture &texture);
