@@ -7,7 +7,7 @@ Player::Player(const sf::Texture& texture)
     : sf::Sprite(texture) {
 
     setTextureRect(frameRect);
-    setScale({4.f, 4.f}); 
+    setScale({scale, scale}); 
 
 }
 
