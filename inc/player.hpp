@@ -24,9 +24,8 @@ class Player : public sf::Sprite {
         sf::IntRect frameRect = sf::IntRect({0, 0}, {16, 16});
         sf::Time frameDuration = sf::seconds(0.2f);
 
-        // Player hitbox + collision box
-        sf::FloatRect hitBox = sf::FloatRect({16, 8}, {28, 56});
-        sf::FloatRect collisionBox = sf::FloatRect({12, 56}, {36, 8});
+        // Player collision box
+        sf::FloatRect collisionBox = sf::FloatRect({20.f, 44.f}, {20.f, 20.f});
 
         // Lists of frame orders for animation
         std::vector<int> walkForwardsFrames = {0, 1, 0, 2};

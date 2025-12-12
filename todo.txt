@@ -4,7 +4,7 @@ Player Animation
 7-8-7-9 Walk left
 10-11-10-12 Walk right
 
-Could:
-- Random terrain generation
-- Collision boxes
-- Make collision detector manager
+Collision detection manager:
+- Class
+- Called every game loop
+- All draw calls happen inside

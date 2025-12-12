@@ -8,7 +8,7 @@ Player::Player(const sf::Texture& texture)
 
     setTextureRect(frameRect);
     setScale({scale, scale}); 
-
+    
 }
 
 // This method takes in the frame list and renders the animation to the screen
